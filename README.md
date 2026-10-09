@@ -1,6 +1,6 @@
 # LearnAI — Freelancer Client System
 
-A premium, conversion-focused digital product website built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**.
+A premium, conversion-focused digital product website built with **Next.js 15**, **TypeScript**, and **Tailwind CSS 4**.
 
 ## Design
 
@@ -10,9 +10,9 @@ A premium, conversion-focused digital product website built with **Next.js 14**,
 
 ## Tech Stack
 
-- Next.js 14 (App Router)
+- Next.js 15 (App Router)
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS 4
 - Vercel deployment
 - Gumroad checkout
 
@@ -23,7 +23,15 @@ Create a `.env.local` file:
 ```env
 NEXT_PUBLIC_GUMROAD_TIER1_URL=your-gumroad-tier1-url
 NEXT_PUBLIC_GUMROAD_TIER2_URL=your-gumroad-tier2-url
+GUMROAD_ACCESS_TOKEN=your-private-gumroad-api-token
+GUMROAD_PRODUCT_IDS=your-tier1-product-id,your-tier2-product-id
 ```
+
+The top banner shows the relative time of the latest verified, non-refunded,
+non-test sale for the configured products. Create a private API token in your
+Gumroad account and add the product IDs for both tiers. Keep
+`GUMROAD_ACCESS_TOKEN` server-side: do not prefix it with `NEXT_PUBLIC_` or
+commit it. Set both server variables in your deployment environment as well.
 
 ## Getting Started
 
@@ -49,11 +57,13 @@ npm run start
 ```
 learnai/
 ├── app/
+│   ├── api/gumroad-sales/ # Private Gumroad sales proxy
 │   ├── globals.css       # Tailwind + custom styles + animations
 │   ├── layout.tsx        # Root layout + metadata
 │   └── page.tsx          # Main page assembly
 ├── components/
 │   ├── Navbar.tsx            # Sticky navigation
+│   ├── LiveSalesBanner.tsx   # Latest verified sale indicator
 │   ├── Hero.tsx              # Hero with product visual
 │   ├── Problem.tsx           # Problem section
 │   ├── Mechanism.tsx         # 6-stage pipeline
@@ -73,7 +83,7 @@ learnai/
 ├── lib/
 │   ├── gumroad.ts            # Gumroad URL env vars
 │   └── useScrollReveal.ts    # Scroll reveal hook
-├── tailwind.config.ts        # Burgundy theme tokens
+├── tailwind.config.js        # Burgundy theme tokens
 └── tsconfig.json
 ```
 
