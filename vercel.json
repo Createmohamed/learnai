@@ -1,11 +1,6 @@
+
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_GUMROAD_TIER1_URL": "@gumroad_tier1_url",
-    "NEXT_PUBLIC_GUMROAD_TIER2_URL": "@gumroad_tier2_url",
-    "GUMROAD_ACCESS_TOKEN": "@gumroad_access_token",
-    "GUMROAD_PRODUCT_IDS": "@gumroad_product_ids"
-  }
+  "outputDirectory": ".next"
 }
